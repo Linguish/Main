@@ -1,6 +1,5 @@
 package My;
 
-//todo 比较器
 //todo 二叉树的插入
 //todo 二叉树的删除
 public class MyTree<E>
@@ -156,6 +155,44 @@ public class MyTree<E>
     }
     public boolean isEmpty(){return root == null;}
     public TreeNode<E> getRoot(){return root;}
-    //todo 判断是否同构
-    //public boolean isomorphic(TreeNode<E> input){}
+    /**
+     * 判断两棵树tree1，tree2是否同构
+     *
+     * @param tree1 第一棵树
+     * @param tree2 第二棵树
+     * @return 同构则true，否则false
+     */
+    public static boolean isomorphic(MyTree tree1, MyTree tree2)
+    {
+        // 先判断根节点，都为null则返回true
+        if(tree1.getRoot() == null && tree2.getRoot() == null){ return true; }
+        // 若一个根节点为null，一个不是null，则两棵树一定不同构，返回false
+        else if((tree1.getRoot() == null && tree2.getRoot() != null) || (tree1.getRoot() != null && tree2.getRoot() == null))
+        { return false; }
+        // 若两根节点都不为null，但其存储的值不相等，那这两棵树也不同构，返回false
+        else if(tree1.getRoot().compareTo(tree2.getRoot()) != 0)
+        { return false; }
+        // 上述三次判断都跳过了，说明根节点都不为null且值相等
+        // 那么接下来判断左子树和右子树
+        // 若左子树都为null，则判断两根节点的右子树是否同构
+        else if(tree1.getRoot().getLeftChild() == null && tree2.getRoot().getLeftChild() == null)
+        { return isomorphic(new MyTree<>(tree1.getRoot().getRightChild()), new MyTree<>(tree2.getRoot().getRightChild()));}
+        // 若左子树都不为null，且值相等
+        // 那么说明没有交换左右节点，分别递归判断左右子树
+        else if((tree1.getRoot().getLeftChild() != null && tree2.getRoot().getLeftChild() != null)
+                && (tree1.getRoot().getLeftChild().compareTo(tree2.getRoot().getLeftChild()) == 0))
+        {
+            return (isomorphic(new MyTree<>(tree1.getRoot().getLeftChild()), new MyTree<>(tree2.getRoot().getLeftChild()))
+                    && isomorphic(new MyTree<>(tree1.getRoot().getRightChild()), new MyTree<>(tree2.getRoot().getRightChild())));
+        }
+        // 其他情况则说明交换了左右节点
+        // 判断tree1的左子树和tree2的右子树是否相等
+        // 还要判断tree1的右子树和tree2的左子树是否相等
+        // 若两个条件都满足则返回ture，否则false
+        else
+        {
+            return (isomorphic(new MyTree<>(tree1.getRoot().getLeftChild()), new MyTree<>(tree2.getRoot().getRightChild()))
+                    && isomorphic(new MyTree<>(tree1.getRoot().getRightChild()), new MyTree<>(tree2.getRoot().getLeftChild())));
+        }
+    }
 }
