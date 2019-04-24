@@ -24,12 +24,15 @@ public class MyTree<E>
                 System.out.print(temp);
                 while(temp != null)
                 {
-                    if(temp.leftChild != null)
+                    if(temp.getLeftChild() != null)
                     {
-                        System.out.print(temp.leftChild);
+                        System.out.print(temp.getLeftChild());
                     }
-                    if(temp.rightChild != null){stack.push(temp.rightChild);}
-                    temp = temp.leftChild;
+                    if(temp.getRightChild() != null)
+                    {
+                        stack.push(temp.getRightChild());
+                    }
+                    temp = temp.getLeftChild();
                 }
             }
         }
@@ -46,13 +49,19 @@ public class MyTree<E>
             stack.push(temp);
             while(!stack.isEmpty())
             {
-                while(stack.peek() != null){stack.push(stack.peek().leftChild);}
+                while(stack.peek() != null)
+                {
+                    stack.push(stack.peek().getLeftChild());
+                }
                 stack.pop();
                 if(!stack.isEmpty())
                 {
                     temp = stack.pop();
                     System.out.print(temp);
-                    if(temp.rightChild != null){stack.push(temp.rightChild);}
+                    if(temp.getRightChild() != null)
+                    {
+                        stack.push(temp.getRightChild());
+                    }
                 }
             }
         }
@@ -73,13 +82,16 @@ public class MyTree<E>
                 boolean flag = false;
                 //上次访问的节点
                 TreeNode<E> lastVisit = null;
-                while(stack.peek() != null){stack.push(stack.peek().leftChild);}
+                while(stack.peek() != null)
+                {
+                    stack.push(stack.peek().getLeftChild());
+                }
                 stack.pop();
                 while(!stack.isEmpty())
                 {
                     temp = stack.peek();
                     //一个根节点被访问的前提是：无右子树或右子树已被访问过
-                    if(temp.rightChild == null || temp.rightChild == lastVisit)
+                    if(temp.getRightChild() == null || temp.getRightChild() == lastVisit)
                     {
                         System.out.print(temp);
                         stack.pop();
@@ -88,7 +100,7 @@ public class MyTree<E>
                     }
                     else
                     {
-                        stack.push(temp.rightChild);
+                        stack.push(temp.getRightChild());
                         flag = false;
                     }
                     if(!flag){ break; }
@@ -106,8 +118,8 @@ public class MyTree<E>
         if(treeNode != null)
         {
             System.out.print(treeNode);
-            preRootTraverse(treeNode.leftChild);
-            preRootTraverse(treeNode.rightChild);
+            preRootTraverse(treeNode.getLeftChild());
+            preRootTraverse(treeNode.getRightChild());
         }
     }
     /**
@@ -119,9 +131,9 @@ public class MyTree<E>
     {
         if(treeNode != null)
         {
-            inRootTraverse(treeNode.leftChild);
+            inRootTraverse(treeNode.getLeftChild());
             System.out.print(treeNode);
-            inRootTraverse(treeNode.rightChild);
+            inRootTraverse(treeNode.getRightChild());
         }
     }
     /**
@@ -133,8 +145,8 @@ public class MyTree<E>
     {
         if(treeNode != null)
         {
-            postRootTraverse(treeNode.leftChild);
-            postRootTraverse(treeNode.rightChild);
+            postRootTraverse(treeNode.getLeftChild());
+            postRootTraverse(treeNode.getRightChild());
             System.out.print(treeNode);
         }
     }
@@ -149,8 +161,11 @@ public class MyTree<E>
         {
             System.out.print(queue.peek());
             TreeNode<E> temp = queue.dequeue();
-            if(temp.leftChild != null){queue.enqueue(temp.leftChild);}
-            if(temp.rightChild != null){queue.enqueue(temp.rightChild);}
+            if(temp.getLeftChild() != null){queue.enqueue(temp.getLeftChild());}
+            if(temp.getRightChild() != null)
+            {
+                queue.enqueue(temp.getRightChild());
+            }
         }
     }
     public boolean isEmpty(){return root == null;}

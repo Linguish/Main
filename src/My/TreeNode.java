@@ -2,9 +2,9 @@ package My;
 
 public class TreeNode<E> implements Comparable<TreeNode<E>>
 {
-    E data;
-    TreeNode<E> leftChild = null;
-    TreeNode<E> rightChild = null;
+    private E data;
+    private TreeNode<E> leftChild = null;
+    private TreeNode<E> rightChild = null;
     public TreeNode(){}
     public TreeNode(E data){this.data = data;}
     public TreeNode(E data, TreeNode<E> leftChild, TreeNode<E> rightChild)
