@@ -19,6 +19,12 @@ public class TreeNode<E> implements Comparable<TreeNode<E>>
     public void setLeftChild(TreeNode<E> leftChild){ this.leftChild = leftChild; }
     public TreeNode<E> getRightChild(){ return rightChild; }
     public void setRightChild(TreeNode<E> rightChild){ this.rightChild = rightChild; }
+    public void setNode(TreeNode<E> node)
+    {
+        this.data = node.data;
+        this.leftChild = node.leftChild;
+        this.rightChild = node.rightChild;
+    }
     @Override
     public String toString(){return data + "";}
     @Override
