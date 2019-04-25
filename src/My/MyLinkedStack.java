@@ -6,7 +6,13 @@ public class MyLinkedStack<E> implements Iterable<E>
 {
     private class Node
     {
+        /**
+         * 数据域
+         */
         E data = null;
+        /**
+         * 指针域
+         */
         Node next = null;
         
         public Node(){}
@@ -28,11 +34,7 @@ public class MyLinkedStack<E> implements Iterable<E>
     
     private Node top = null;
     private int size = 0;
-    /**
-     * 判断栈是否为空
-     *
-     * @return 为空则返回true, 否则false
-     */
+
     public boolean isEmpty(){return top == null;}
     
     public int size(){return size;}

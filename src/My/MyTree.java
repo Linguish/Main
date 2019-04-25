@@ -1,7 +1,5 @@
 package My;
 
-//todo 二叉树的插入
-//todo 二叉树的删除
 public class MyTree<E>
 {
     private TreeNode<E> root = null;

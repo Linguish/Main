@@ -2,9 +2,18 @@ package My;
 
 public class MyLinkedQueue<E>
 {
-    private Node first;//指向最早添加的
-    private Node last;//指向最近添加的
-    private int number = 0;//队列元素个数
+    /**
+     * 指向最早添加的
+     */
+    private Node first;
+    /**
+     * 指向最近添加的
+     */
+    private Node last;
+    /**
+     * 队列元素个数
+     */
+    private int number = 0;
     
     private class Node
     {
@@ -30,7 +39,6 @@ public class MyLinkedQueue<E>
      * @return 队首元素
      */
     public E peek(){return first.data;}
-    
     /**
      * 入队
      *
