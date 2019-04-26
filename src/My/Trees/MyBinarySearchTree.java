@@ -1,15 +1,15 @@
 package My.Trees;
 
-public class MyBinarySearchTree<E>
+public class MyBinarySearchTree<E extends Comparable<E>>
 {
-    private class TreeNode<E>
+    private class TreeNode<E extends Comparable<E>> implements Comparable<E>
     {
         private E data;
         private TreeNode<E> leftChild = null;
         private TreeNode<E> rightChild = null;
         public TreeNode(){}
         public TreeNode(E data){this.data = data;}
-
+        
         public E getData(){ return data; }
         public void setData(E data){ this.data = data; }
         public TreeNode<E> getLeftChild(){ return leftChild; }
@@ -22,6 +22,9 @@ public class MyBinarySearchTree<E>
             this.leftChild = node.leftChild;
             this.rightChild = node.rightChild;
         }
+        @Override
+        public int compareTo(E o)
+        { return data.compareTo(o); }
     }
     
     private TreeNode<E> root = null;
@@ -43,12 +46,12 @@ public class MyBinarySearchTree<E>
             TreeNode<E> temp = root;
             while(true)
             {
-                if(data.toString().compareTo(temp.toString())<0)
+                if(data.compareTo(temp.getData())<0)
                 {
                     if(temp.getLeftChild() == null){ break; }
                     else{temp = temp.getLeftChild();}
                 }
-                else if(data.toString().compareTo(temp.toString())>0)
+                else if(data.compareTo(temp.getData())>0)
                 {
                     if(temp.getRightChild() == null){ break; }
                     else{temp = temp.getRightChild();}
@@ -117,7 +120,7 @@ public class MyBinarySearchTree<E>
             TreeNode<E> temp = root;
             while(true)
             {
-                if(data.toString().compareTo(temp.toString())<0)
+                if(data.compareTo(temp.getData())<0)
                 {
                     if(temp.getLeftChild() == null)
                     {
@@ -127,7 +130,7 @@ public class MyBinarySearchTree<E>
                     }
                     else{temp = temp.getLeftChild();}
                 }
-                else if(data.toString().compareTo(temp.toString())>0)
+                else if(data.compareTo(temp.getData())>0)
                 {
                     if(temp.getRightChild() == null)
                     {
@@ -159,13 +162,13 @@ public class MyBinarySearchTree<E>
             while(true)
             {
                 //查找要删除的节点
-                if(data.toString().compareTo(temp.toString())<0)
+                if(data.compareTo(temp.getData())<0)
                 {
                     if(temp.getLeftChild() == null){ break; }
                     else
                     { temp = temp.getLeftChild(); }
                 }
-                else if(data.toString().compareTo(temp.toString())>0)
+                else if(data.compareTo(temp.getData())>0)
                 {
                     if(temp.getRightChild() == null){ break; }
                     else

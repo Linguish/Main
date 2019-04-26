@@ -3,7 +3,7 @@ package My.Trees;
 import My.MyLinkedQueue;
 import My.MyLinkedStack;
 
-public class MyTree<E>
+public class MyTree<E extends Comparable<E>>
 {
     private TreeNode<E> root = null;
     public MyTree(){}

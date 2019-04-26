@@ -1,6 +1,6 @@
 package My.Trees;
 
-public class TreeNode<E> implements Comparable<TreeNode<E>>
+public class TreeNode<E extends Comparable<E>> implements Comparable<TreeNode<E>>
 {
     private E data;
     private TreeNode<E> leftChild = null;
@@ -29,5 +29,5 @@ public class TreeNode<E> implements Comparable<TreeNode<E>>
     public String toString(){return data + "";}
     @Override
     public int compareTo(TreeNode<E> o)
-    { return data.toString().compareTo(o.getData().toString()); }
+    { return data.compareTo(o.data); }
 }
