@@ -55,7 +55,6 @@ public class MyBinarySearchTree<E>
             {temp = temp.getRightChild();}
             ret = temp.getData();
         }
-        
         return ret;
     }
     /**
@@ -142,17 +141,13 @@ public class MyBinarySearchTree<E>
                 {
                     if(temp.getLeftChild() == null){ break; }
                     else
-                    {
-                        temp = temp.getLeftChild();
-                    }
+                    { temp = temp.getLeftChild(); }
                 }
                 else if(data.toString().compareTo(temp.toString())>0)
                 {
                     if(temp.getRightChild() == null){ break; }
                     else
-                    {
-                        temp = temp.getRightChild();
-                    }
+                    { temp = temp.getRightChild(); }
                 }
                 //找到要删除的节点
                 else
