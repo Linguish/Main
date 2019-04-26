@@ -1,5 +1,7 @@
 package My;
 
+import My.Trees.TreeNode;
+
 public class MyBinarySearchTree<E>
 {
     private TreeNode<E> root = null;

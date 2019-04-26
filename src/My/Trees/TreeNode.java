@@ -1,4 +1,4 @@
-package My;
+package My.Trees;
 
 public class TreeNode<E> implements Comparable<TreeNode<E>>
 {

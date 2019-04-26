@@ -1,4 +1,7 @@
-package My;
+package My.Trees;
+
+import My.MyLinkedQueue;
+import My.MyLinkedStack;
 
 public class MyTree<E>
 {
