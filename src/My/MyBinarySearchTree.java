@@ -3,6 +3,9 @@ package My;
 public class MyBinarySearchTree<E>
 {
     private TreeNode<E> root = null;
+    
+    private enum LeftOrRight
+    {isFather_Left, isFather_Right}
     public MyBinarySearchTree(){}
     public MyBinarySearchTree(E data){insert(data);}
     
@@ -137,7 +140,7 @@ public class MyBinarySearchTree<E>
             //要删除的节点的父节点
             TreeNode<E> father = null;
             //记录要删除的节点是父节点的左子节点还是右子节点
-            String s = null;
+            LeftOrRight leftOrRight = null;
             while(true)
             {
                 //查找要删除的节点
@@ -146,7 +149,7 @@ public class MyBinarySearchTree<E>
                     if(temp.getLeftChild() == null){ break; }
                     else
                     {
-                        s = "Father's Left";
+                        leftOrRight = LeftOrRight.isFather_Left;
                         father = temp;
                         temp = temp.getLeftChild();
                     }
@@ -156,7 +159,7 @@ public class MyBinarySearchTree<E>
                     if(temp.getRightChild() == null){ break; }
                     else
                     {
-                        s = "Father's Right";
+                        leftOrRight = LeftOrRight.isFather_Right;
                         father = temp;
                         temp = temp.getRightChild();
                     }
@@ -185,9 +188,9 @@ public class MyBinarySearchTree<E>
                             lMax = lMax.getRightChild();
                         }
                         maxFather.setRightChild(lMax.getLeftChild());
-                        if(s == "Father's Left")
+                        if(leftOrRight == LeftOrRight.isFather_Left)
                         { father.setLeftChild(lMax); }
-                        else if(s == "Father's Right")
+                        else if(leftOrRight == LeftOrRight.isFather_Right)
                         { father.setRightChild(lMax); }
                         else{root = lMax;}
                         lMax.setLeftChild(temp.getLeftChild());
@@ -214,7 +217,7 @@ public class MyBinarySearchTree<E>
         System.out.println("查找\"Mar\":" + test.find("Mar"));
         System.out.println("删除\"Mar\":" + test.delete("Mar"));
         System.out.println("查找\"Mar\":" + test.find("Mar"));
-    
+        
         System.out.println("查找\"Jan\":" + test.find("Jan"));
         System.out.println("删除\"Jan\":" + test.delete("Jan"));
         System.out.println("查找\"Jan\":" + test.find("Jan"));
